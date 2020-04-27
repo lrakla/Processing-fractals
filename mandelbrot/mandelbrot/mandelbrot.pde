@@ -1,19 +1,25 @@
-float range_x_min = -1;
+float range_x_min = -2;
 float range_x_max =  1;
-float range_y_min = -1;
-float range_y_max =  1;
-
+float range_y_min = -1.5;
+float range_y_max =  1.5;
+float zoom = 1;
+float xo,yo;
 boolean changed = true;
 
 Complex_no z = new Complex_no(0, 0);
 
 void setup() {
-    size(800, 600);
+    smooth();
+    size(800, 800);
     background(255);
+    xo = width/2;
+    yo = height/2;
 }
 
 
 void draw() {
+    translate(xo,yo);
+    scale(zoom);
     
     float change_x = (range_x_max - range_x_min)/width;
     float change_y = (range_y_max - range_y_min)/height;
@@ -56,19 +62,32 @@ void keyPressed() {
         range_x_max += 0.1;
     }
     if(key == 'a'){
-        range_x_min += 0.1;
-        range_x_max -= 0.1;
-        range_y_min += 0.1;
-        range_y_max -= 0.1;
+        //range_x_min += 0.1;
+        //range_x_max -= 0.1;
+        //range_y_min += 0.1;
+        //range_y_max -= 0.1;
+        zoom +=0.1;
     }
     if(key == 'z'){
-        range_x_min -= 0.1;
-        range_x_max += 0.1;
-        range_y_min -= 0.1;
-        range_y_max += 0.1;
+        //range_x_min -= 0.1;
+        //range_x_max += 0.1;
+        //range_y_min -= 0.1;
+        //range_y_max += 0.1;
+        zoom-=0.1;
+    }
+    if(key == ' '){
+        zoom =1;
+        xo = width/2;
+        yo = width/2;
     }
 }
 
-void mousePressed(){
-    println(mouseX,mouseY);
+//void mousePressed(){
+//    println(mouseX,mouseY);
+//}
+
+void mouseDragged(){
+  changed = true;
+  xo = xo + (mouseX - pmouseX)/10;
+  yo = yo + (mouseY - pmouseY)/10; 
 }
