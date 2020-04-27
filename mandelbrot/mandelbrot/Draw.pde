@@ -1,14 +1,7 @@
-float getx_complex(float x){
-  return (width/2+width*x/4);
+float getx_complex(float x) {
+    return map(x,range_x_min,range_x_max,0,width);
 }
 
-float gety_complex(float y){
-  return (height/2-height*y/4);
-}
-
-float getx_pro(float x){
-  return x-width/2;
-}
-float gety_pro(float y){
-  return height/2-y;
+float gety_complex(float y) {
+    return map(y,range_y_min,range_y_max,0,height);
 }
